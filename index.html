@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ay Des Hair — Beauty Boutique Bologna</title>
+<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0A0A0A;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --white: #FAFAF8;
+    --grey: #F2F0EC;
+    --muted: #8A8078;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+  }
+  .nav-logo {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.4rem; font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.78rem;
+    font-weight: 400; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(250,250,248,0.55);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-book {
+    background: var(--gold); color: var(--black);
+    padding: 0.65rem 1.6rem; border-radius: 2px;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-book:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(201,169,110,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    padding: 5rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-line {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-line::before, .hero-line::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,169,110,0.5));
+  }
+  .hero-line::after {
+    background: linear-gradient(90deg, rgba(201,169,110,0.5), transparent);
+  }
+  .hero-line span {
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); white-space: nowrap;
+  }
+
+  .hero-h1 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(3.5rem, 6vw, 7rem);
+    font-weight: 900; line-height: 0.9;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-h1 em { font-style: italic; color: var(--gold); display: block; }
+  .hero-h1 .sub { font-size: 0.45em; font-weight: 400; letter-spacing: 0.1em; color: rgba(250,250,248,0.5); display: block; margin-top: 0.5rem; text-transform: uppercase; font-family: 'Outfit', sans-serif; }
+
+  .hero-p {
+    font-size: 0.95rem; line-height: 1.9;
+    color: rgba(250,250,248,0.55);
+    max-width: 380px; margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; margin-bottom: 4rem; }
+  .btn-gold {
+    background: var(--gold); color: var(--black);
+    padding: 1rem 2.5rem; font-size: 0.8rem;
+    font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(201,169,110,0.4);
+    color: var(--gold); padding: 1rem 2.5rem;
+    font-size: 0.8rem; font-weight: 400;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,169,110,0.08); }
+
+  .hero-info {
+    display: flex; gap: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(201,169,110,0.15);
+  }
+  .info-item { }
+  .info-label {
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .info-value { font-size: 0.88rem; color: rgba(250,250,248,0.7); line-height: 1.5; }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    animation: fadeIn 1.2s ease both 0.3s;
+  }
+  .hero-img-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%; gap: 3px;
+  }
+  .img-block {
+    background: #1A1A1A;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; position: relative; overflow: hidden;
+    transition: transform 0.5s;
+  }
+  .img-block:hover { transform: scale(1.02); }
+  .img-block:nth-child(1) { background: linear-gradient(145deg, #1A1510, #2A2015); }
+  .img-block:nth-child(2) { background: linear-gradient(145deg, #151515, #252525); }
+  .img-block:nth-child(3) { background: linear-gradient(145deg, #151515, #1F1F1F); }
+  .img-block:nth-child(4) { background: linear-gradient(145deg, #1A1510, #201A10); }
+  .img-block::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.6));
+  }
+  .img-label {
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 8rem 4rem;
+    background: var(--white);
+    color: var(--black);
+  }
+  .section-label {
+    font-size: 0.68rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::before {
+    content: ''; width: 40px; height: 1px;
+    background: var(--gold); display: inline-block;
+  }
+  .section-h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    font-weight: 700; line-height: 1.05;
+    margin-bottom: 4rem; letter-spacing: -0.02em;
+  }
+  .section-h2 em { font-style: italic; color: var(--gold); }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(0,0,0,0.08);
+  }
+  .service-card {
+    background: var(--white);
+    padding: 3rem 2.5rem;
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover { background: var(--grey); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2.2rem; margin-bottom: 1.5rem; }
+  .service-name {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 0.8rem; letter-spacing: -0.01em;
+  }
+  .service-desc {
+    font-size: 0.85rem; line-height: 1.7;
+    color: var(--muted); margin-bottom: 1.5rem;
+  }
+  .service-price {
+    font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 8rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-box {
+    background: #141414;
+    border: 1px solid rgba(201,169,110,0.15);
+    border-radius: 2px;
+    height: 480px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem;
+    position: relative; overflow: hidden;
+  }
+  .about-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(201,169,110,0.12) 0%, transparent 60%);
+  }
+  .about-badge {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--gold); color: var(--black);
+    width: 120px; height: 120px; border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-family: 'Bodoni Moda', serif;
+  }
+  .about-badge .num { font-size: 2rem; font-weight: 900; line-height: 1; }
+  .about-badge .txt { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; }
+
+  .about-content { }
+  .about-content h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 1.5rem; letter-spacing: -0.02em;
+  }
+  .about-content h2 em { font-style: italic; color: var(--gold); }
+  .about-content p {
+    font-size: 0.92rem; line-height: 1.9;
+    color: rgba(250,250,248,0.55); margin-bottom: 1.2rem;
+  }
+  .about-content a {
+    display: inline-block; margin-top: 1rem;
+    color: var(--gold); font-size: 0.8rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.4);
+    padding-bottom: 3px; transition: border-color 0.2s;
+  }
+  .about-content a:hover { border-color: var(--gold); }
+
+  /* REVIEWS */
+  .reviews {
+    padding: 8rem 4rem;
+    background: #0D0D0D;
+  }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 4rem;
+  }
+  .review {
+    border: 1px solid rgba(201,169,110,0.12);
+    padding: 2.5rem;
+    transition: border-color 0.3s;
+    position: relative;
+  }
+  .review::before {
+    content: '"';
+    font-family: 'Bodoni Moda', serif;
+    font-size: 6rem; line-height: 0.8;
+    color: rgba(201,169,110,0.1);
+    position: absolute; top: 1.5rem; left: 2rem;
+    pointer-events: none;
+  }
+  .review:hover { border-color: rgba(201,169,110,0.35); }
+  .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 1.2rem; }
+  .review-text {
+    font-size: 0.88rem; line-height: 1.8;
+    color: rgba(250,250,248,0.6); margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .review-name { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+
+  /* BOOKING */
+  .booking {
+    padding: 8rem 4rem;
+    text-align: center;
+    background: var(--white);
+    color: var(--black);
+  }
+  .booking h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 900; line-height: 1;
+    margin-bottom: 1.5rem; letter-spacing: -0.03em;
+  }
+  .booking h2 em { font-style: italic; color: var(--gold); }
+  .booking p {
+    font-size: 0.95rem; color: var(--muted);
+    margin-bottom: 3rem; line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,169,110,0.15);
+    padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.1rem; font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+  .footer-logo span { color: var(--gold); font-style: italic; }
+  footer p { font-size: 0.78rem; color: rgba(250,250,248,0.3); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,250,248,0.3); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 300px; }
+    .hero-left { padding: 3rem 1.5rem; }
+    .services, .booking, .reviews { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; padding: 2rem 1.5rem; text-align: center; }
+    .hero-info { flex-direction: column; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AY DES <span>Hair</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Reviews</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-book">Book Now</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-line"><span>Beauty Boutique · Bologna</span></div>
+    <h1 class="hero-h1">
+      Where hair
+      <em>becomes art.</em>
+      <span class="sub">Via Riva Di Reno · Bologna, Italy</span>
+    </h1>
+    <p class="hero-p">
+      A luxury hair experience in the heart of Bologna. Cuts, colour, treatments — crafted with precision and passion. Rated 4.9 stars by over 255 clients.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn-gold">Book Appointment</a>
+      <a href="#" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-info">
+      <div class="info-item">
+        <div class="info-label">Location</div>
+        <div class="info-value">Via Riva Di Reno 120<br>Bologna, Italy</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Hours</div>
+        <div class="info-value">Tue–Sat: 9:30am–7pm<br>Sun–Mon: Closed</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Rating</div>
+        <div class="info-value">⭐ 4.9 / 5<br>255 Reviews</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-grid">
+      <div class="img-block"><span>💇‍♀️</span><div class="img-label">Cut & Style</div></div>
+      <div class="img-block"><span>✨</span><div class="img-label">Highlights</div></div>
+      <div class="img-block"><span>🎨</span><div class="img-label">Colour</div></div>
+      <div class="img-block"><span>💆‍♀️</span><div class="img-label">Treatment</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-label">What We Offer</div>
+  <h2 class="section-h2">Our <em>Services</em></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✂️</div>
+      <div class="service-name">Cut & Style</div>
+      <p class="service-desc">Precision cuts tailored to your face shape and lifestyle. From classic bobs to modern layers — we make it perfect.</p>
+      <div class="service-price">From €35</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <div class="service-name">Colour & Highlights</div>
+      <p class="service-desc">Balayage, ombre, full colour — our colourists bring your vision to life with premium products that protect your hair.</p>
+      <div class="service-price">From €65</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💆‍♀️</div>
+      <div class="service-name">Hair Treatments</div>
+      <p class="service-desc">Keratin, deep conditioning, scalp treatments — restore your hair's health and shine with our luxury care range.</p>
+      <div class="service-price">From €45</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👰</div>
+      <div class="service-name">Bridal Hair</div>
+      <p class="service-desc">Look breathtaking on your special day. Includes trial session and personalised styling for the perfect bridal look.</p>
+      <div class="service-price">From €120</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌊</div>
+      <div class="service-name">Blow Dry & Finish</div>
+      <p class="service-desc">A salon-perfect blow dry for any occasion. Smooth, voluminous or beachy waves — we deliver the look you want.</p>
+      <div class="service-price">From €25</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚗️</div>
+      <div class="service-name">Perms & Relaxers</div>
+      <p class="service-desc">Curl enhancement or sleek straightening — our specialists use the finest products for long-lasting, healthy results.</p>
+      <div class="service-price">From €80</div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-visual">
+    <div class="about-box">
+      <span>💇‍♀️</span>
+      <div class="about-badge">
+        <span class="num">4.9</span>
+        <span class="txt">Star Rating</span>
+      </div>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="section-label">Our Story</div>
+    <h2>More than a salon.<br>It's an <em>experience.</em></h2>
+    <p>Ay Des Hair is Bologna's premier beauty boutique — a space where artistry meets care. We believe every client deserves to leave feeling confident, beautiful, and truly seen.</p>
+    <p>With over 255 five-star reviews and years of expertise, our team of passionate stylists brings dedication and creativity to every appointment.</p>
+    <a href="#">Meet our team →</a>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="section-label">Client Love</div>
+  <h2 class="section-h2" style="font-family:'Bodoni Moda',serif; font-size:clamp(2rem,3vw,3rem); margin-bottom:0;">What our clients <em style="color:var(--gold)">say</em></h2>
+  <div class="reviews-grid">
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The best hair salon in Bologna, no question. My highlights came out absolutely perfect. The team is so professional and the atmosphere is gorgeous."</p>
+      <div class="review-name">Giulia M. · Bologna</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I've been coming here for two years and I wouldn't go anywhere else. The cut is always perfect and they really listen to what you want."</p>
+      <div class="review-name">Sofia R. · Bologna</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Came here for my wedding hair and I was blown away. The trial session was so thorough and on the day I felt like a queen. Thank you!"</p>
+      <div class="review-name">Valentina C. · Bologna</div>
+    </div>
+  </div>
+</section>
+
+<section class="booking">
+  <div class="section-label" style="justify-content:center;">Reserve Your Visit</div>
+  <h2>Ready for your <em>transformation?</em></h2>
+  <p>Book your appointment online in seconds.<br>We can't wait to welcome you.</p>
+  <a href="#" class="btn-gold" style="display:inline-block; padding: 1.1rem 3rem; font-size:0.82rem; letter-spacing:0.15em; text-transform:uppercase; background:var(--gold); color:var(--black); text-decoration:none; font-weight:500;">Book Your Appointment</a>
+</section>
+
+<footer>
+  <div class="footer-logo">AY DES <span>Hair</span></div>
+  <ul class="footer-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Book</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <p>© 2025 Ay Des Hair · Bologna, Italy</p>
+</footer>
+
+</body>
+</html>
